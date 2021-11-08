@@ -402,7 +402,6 @@ MonoBehaviour:
   moveUp: 273
   moveDown: 274
   speed: 10
-  boundY: 2.25
 --- !u!50 &550236713
 Rigidbody2D:
   serializedVersion: 4
@@ -855,7 +854,6 @@ MonoBehaviour:
   moveUp: 119
   moveDown: 115
   speed: 10
-  boundY: 2.25
 --- !u!50 &2101988177
 Rigidbody2D:
   serializedVersion: 4

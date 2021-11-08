@@ -8,10 +8,20 @@ public class BallControl : MonoBehaviour {
     // Start is called before the first frame update
     void Start() {
         rb2d = GetComponent<Rigidbody2D>();
-        Invoke("GoBall", 2);
     }
 
-    void GoBall() {
+    // Update is called once per frame
+    void Update() {
+        // If the ball manages to get past the collision on the top/bottom walls, reset it
+        var pos = transform.position;
+        if (pos.y > 10f || pos.y < -10f) {
+            rb2d.velocity = Vector2.zero;
+            transform.position = Vector2.zero;
+            StartGame();
+        }
+    }
+
+    void StartGame() {
         float rand = Random.Range(0, 2);
         float randY = Random.Range(-20, 20);
 
@@ -29,7 +39,7 @@ public class BallControl : MonoBehaviour {
 
     void RestartGame() {
         ResetBall();
-        Invoke("GoBall", 1);
+        StartGame();
     }
 
     void OnCollisionEnter2D (Collision2D coll) {

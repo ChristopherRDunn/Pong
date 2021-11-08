@@ -6,7 +6,6 @@ public class PlayerControls : MonoBehaviour {
     public KeyCode moveUp = KeyCode.W;
     public KeyCode moveDown = KeyCode.S;
     public float speed = 10f;
-    public float boundY = 3.5f;
     private Rigidbody2D rb2d;
 
     // Start is called before the first frame update

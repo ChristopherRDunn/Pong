@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour {
     public static int Player1Score = 0;
     public static int Player2Score = 0;
+    private static bool started = false;
 
     public GUISkin layout;
 
@@ -24,14 +25,22 @@ public class GameManager : MonoBehaviour {
     }
 
     void OnGUI() {
+        Rect startButtonRect = new Rect(Screen.width / 2 - 35, 20, 120, 53);
         GUI.skin = layout;
         GUI.Label(new Rect((Screen.width / 2) - 138, 20, 100, 100), "" + Player1Score);
         GUI.Label(new Rect((Screen.width / 2) + 162, 20, 100, 100), "" + Player2Score);
 
-        if (GUI.Button(new Rect(Screen.width / 2 - 60, 35, 120, 53), "RESTART")) {
-            Player1Score = 0;
-            Player2Score = 0;
-            theBall.SendMessage("RestartGame", 0.5f, SendMessageOptions.RequireReceiver);
+        if (started) {
+            if (GUI.Button(startButtonRect, "RESTART")) {
+                Player1Score = 0;
+                Player2Score = 0;
+                theBall.SendMessage("RestartGame", 0f, SendMessageOptions.RequireReceiver);
+            }
+        } else {
+            if (GUI.Button(startButtonRect, "START")) {
+                started = true;
+                theBall.SendMessage("StartGame", 0.5f, SendMessageOptions.RequireReceiver);
+            }
         }
 
         if (Player1Score == 10) {
